@@ -12,11 +12,16 @@ import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
     private XmlMethods xml_methods = new XmlMethods();
     private Player player = new Player();
     private static Stage primarystage;
+    public static boolean play_pressed = false;
+    final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
     public Main() throws URISyntaxException {
     }
@@ -33,6 +38,16 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1024, 768));
         primaryStage.show();
         primarystage = primaryStage;
+        executorService.scheduleAtFixedRate(this::start_play_button_loop, 0, 1, TimeUnit.SECONDS);
+    }
+
+    public void start_play_button_loop() {
+        if (!play_pressed) {
+            System.out.println("not pressed");
+        }
+        else if (play_pressed){
+            System.out.println("pressed");
+        }
     }
 
     /**
