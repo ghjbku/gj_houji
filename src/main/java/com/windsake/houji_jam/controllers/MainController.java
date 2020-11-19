@@ -26,7 +26,6 @@ public class MainController {
 
     @FXML
     public void onclick() {
-        Main.play_pressed = true;
         try {
             if (!player_name_box.getText().isEmpty()){
                Player player = Main.getPlayer();

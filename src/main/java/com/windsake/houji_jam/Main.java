@@ -14,7 +14,6 @@ public class Main extends Application {
     private static XmlMethods xml_methods = new XmlMethods();
     private static Player player = new Player("Player");
     private static Stage primarystage;
-    public static boolean play_pressed = false;
 
     public Main() {
     }
