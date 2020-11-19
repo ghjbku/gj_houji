@@ -2,13 +2,10 @@ package com.windsake.houji_jam.controllers;
 
 import com.windsake.houji_jam.Main;
 import com.windsake.houji_jam.control_objects.XmlMethods;
-import com.windsake.houji_jam.game_objects.Images;
 import com.windsake.houji_jam.game_objects.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-
-import java.net.MalformedURLException;
 
 public class MainController {
     private static XmlMethods xml_methods = new XmlMethods();
@@ -18,10 +15,7 @@ public class MainController {
     @FXML
     public TextField player_name_box;
 
-    private Images images;
-
-    public MainController() throws MalformedURLException {
-        images = new Images();
+    public MainController() {
     }
 
     @FXML

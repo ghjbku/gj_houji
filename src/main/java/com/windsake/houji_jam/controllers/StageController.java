@@ -18,7 +18,6 @@ public class StageController {
 
     @FXML
     public void onclick() {
-        Main.play_pressed = true;
     }
     @FXML
     public void on_enter() {

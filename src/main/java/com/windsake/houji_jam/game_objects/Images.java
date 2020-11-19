@@ -21,6 +21,8 @@ public class Images {
     private final Image play_button1_img = new Image(play_button_image1_url.toExternalForm());
     URL play_button_image2_url = new URL(Main.class.getResource("images/castle.jpg").toExternalForm());
     private final Image play_button2_img = new Image(play_button_image2_url.toExternalForm());
+    URL player_image_url = new URL(Main.class.getResource("images/player.jpg").toExternalForm());
+    private final Image player_img = new Image(player_image_url.toExternalForm());
 
     /**
      * function that returns an Image based on the string it got as param.
@@ -29,11 +31,26 @@ public class Images {
      * @return an Image.
      */
     public Image getimage(String str) {
-        if (str.equals("p1")) {
+
+        switch (str){
+            case "p1":
+                return play_button1_img;
+
+            case "p2":
+                return play_button2_img;
+
+            case "player":
+                return player_img;
+
+            default:
+                return null;
+        }
+
+       /* if (str.equals("p1")) {
             return play_button1_img;
         } else if (str.equals("p2")) {
             return play_button2_img;
         }
-        return null;
+        return null;*/
     }
 }
