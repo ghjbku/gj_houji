@@ -21,7 +21,7 @@ public class Images {
     private final Image play_button1_img = new Image(play_button_image1_url.toExternalForm());
     URL play_button_image2_url = new URL(Main.class.getResource("images/castle.jpg").toExternalForm());
     private final Image play_button2_img = new Image(play_button_image2_url.toExternalForm());
-    URL player_image_url = new URL(Main.class.getResource("images/player.jpg").toExternalForm());
+    URL player_image_url = new URL(Main.class.getResource("images/player.png").toExternalForm());
     private final Image player_img = new Image(player_image_url.toExternalForm());
 
     /**

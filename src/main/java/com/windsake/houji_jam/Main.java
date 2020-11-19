@@ -44,7 +44,7 @@ public class Main extends Application {
      */
     public static void readxml() {
         Player loadplayer = xml_methods.load();
-        System.out.println("player name: "+loadplayer.getName());
+        System.out.println("player name: " + loadplayer.getName());
         player = loadplayer;
     }
 
@@ -54,13 +54,12 @@ public class Main extends Application {
      * @throws IOException error occured with the fxml file.
      */
     public static void start_game() throws IOException {
-       try {
+        try {
             readxml();
+        } catch (Exception e) {
+            e.printStackTrace();
+            savetoxml();
         }
-       catch (Exception e){
-           e.printStackTrace();
-           savetoxml();
-       }
         Parent root = FXMLLoader.load(Main.class.getResource("Views/Stage.fxml"));
         primarystage.setScene(new Scene(root, 1024, 768));
         primarystage.show();

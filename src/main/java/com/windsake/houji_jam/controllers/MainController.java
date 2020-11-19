@@ -21,19 +21,18 @@ public class MainController {
     @FXML
     public void onclick() {
         try {
-            if (!player_name_box.getText().isEmpty()){
-               Player player = Main.getPlayer();
-               player.setName(player_name_box.getText());
-               xml_methods.save(player);
+            if (!player_name_box.getText().isEmpty()) {
+                Player player = Main.getPlayer();
+                player.setName(player_name_box.getText());
+                xml_methods.save(player);
             }
             Main.start_game();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
     @FXML
     public void on_enter() {
         play_button.setScaleX(1.1);
