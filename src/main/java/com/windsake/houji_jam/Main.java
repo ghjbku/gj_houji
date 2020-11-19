@@ -17,13 +17,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
-    private XmlMethods xml_methods = new XmlMethods();
-    private Player player = new Player();
+    private static XmlMethods xml_methods = new XmlMethods();
+    private static Player player = new Player("Player");
     private static Stage primarystage;
     public static boolean play_pressed = false;
-    final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-    public Main() throws URISyntaxException {
+    public Main() {
     }
 
     /**
@@ -33,53 +32,45 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Views/Main.fxml"));
         primaryStage.setTitle("Houji Game Jam Project");
         primaryStage.setScene(new Scene(root, 1024, 768));
         primaryStage.show();
         primarystage = primaryStage;
-        executorService.scheduleAtFixedRate(this::start_play_button_loop, 0, 1, TimeUnit.SECONDS);
-    }
-
-    public void start_play_button_loop() {
-        if (!play_pressed) {
-            System.out.println("not pressed");
-        }
-        else if (play_pressed){
-            System.out.println("pressed");
-        }
     }
 
     /**
      * method that uses the <code>XmlMethods</code> class as its base to save the playerdata into the xml file.
-     *
-     * @throws FileNotFoundException the xml file doesnt exists.
-     * @throws JAXBException         if there is an error with the xml file.
      */
-    public void savetoxml() throws FileNotFoundException, JAXBException {
+    public static void savetoxml() {
         xml_methods.save(player);
     }
 
     /**
      * method that uses the <code>XmlMethods</code> class as its base to load the playerdata from the xml .
-     *
-     * @throws JAXBException         if there is an error with the xml file.
-     * @throws FileNotFoundException the xml file doesnt exists.
      */
-    public void readxml() throws JAXBException, FileNotFoundException {
+    public static void readxml() {
         Player loadplayer = xml_methods.load();
+        System.out.println("player name: "+loadplayer.getName());
         player = loadplayer;
-
     }
 
     /**
-     * method to start the game and change the stage's scene from the main screen into the first level: ForestScene.
+     * method to start the game and change the stage's scene from the main screen into the game level.
      *
-     * @throws IOException   error occured with the fxml file.
-     * @throws JAXBException if there is an error with the xml file.
+     * @throws IOException error occured with the fxml file.
      */
-    public void start_game() throws IOException, JAXBException {
-        savetoxml();
+    public static void start_game() throws IOException {
+       try {
+            readxml();
+        }
+       catch (Exception e){
+           e.printStackTrace();
+           savetoxml();
+       }
+        Parent root = FXMLLoader.load(Main.class.getResource("Views/Stage.fxml"));
+        primarystage.setScene(new Scene(root, 1024, 768));
+        primarystage.show();
         System.out.println("game starting now");
     }
 
@@ -90,9 +81,7 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-
     }
-
 
     /**
      * a function that is used to get the class's stage.
@@ -108,7 +97,7 @@ public class Main extends Application {
      *
      * @return player obj.
      */
-    public Player getPlayer() {
+    public static Player getPlayer() {
         return player;
     }
 

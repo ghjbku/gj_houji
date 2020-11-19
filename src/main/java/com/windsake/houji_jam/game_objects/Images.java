@@ -1,5 +1,6 @@
 package com.windsake.houji_jam.game_objects;
 
+import com.windsake.houji_jam.Main;
 import javafx.scene.image.Image;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,9 +17,9 @@ public class Images {
     public Images() throws MalformedURLException {
     }
 
-    URL play_button_image1_url = new URL(getClass().getResource("../images/play.jpg").toExternalForm());
+    URL play_button_image1_url = new URL(Main.class.getResource("images/play.jpg").toExternalForm());
     private final Image play_button1_img = new Image(play_button_image1_url.toExternalForm());
-    URL play_button_image2_url = new URL(getClass().getResource("../images/castle.jpg").toExternalForm());
+    URL play_button_image2_url = new URL(Main.class.getResource("images/castle.jpg").toExternalForm());
     private final Image play_button2_img = new Image(play_button_image2_url.toExternalForm());
 
     /**
