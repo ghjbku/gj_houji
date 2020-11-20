@@ -20,13 +20,15 @@ import java.util.concurrent.TimeUnit;
 
 public class StageController {
     final Timeline timeline = new Timeline();
+    private int counter = 1;
 
     @FXML
     public Label Monologe_label;
 
     private Images images = new Images();
     String monologe_1 = "Welcome my dear friend! It's time you finally arrived!";
-    //String[] Monologe1_characters = monologe_1.split(",");
+    String monologe_2 = "monologe 2";
+    String monologe_3 = "monologe 3";
 
     public StageController() throws MalformedURLException {
     }
@@ -34,23 +36,61 @@ public class StageController {
     @FXML
     public void on_click() {
         Monologe_label.setText("");
-        final IntegerProperty i = new SimpleIntegerProperty(0);
-        Timeline timeline = new Timeline();
-        KeyFrame keyFrame = new KeyFrame(
-                Duration.seconds(.15),
-                event -> {
-                    if (i.get() > monologe_1.length()) {
-                        timeline.stop();
-                        System.out.println("stopped");
-                    } else {
-                        Monologe_label.setText(monologe_1.substring(0, i.get()));
-                        i.set(i.get() + 1);
-                    }
-                });
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+            final IntegerProperty i = new SimpleIntegerProperty(0);
+            Timeline timeline = new Timeline();
+        switch (counter) {
+            case 1 :
+            counter ++;
+            KeyFrame keyFrame = new KeyFrame(
+                    Duration.seconds(.15),
+                    event -> {
+                        if (i.get() > monologe_1.length()) {
+                            timeline.stop();
+                            System.out.println("stopped");
+                        } else {
+                            Monologe_label.setText(monologe_1.substring(0, i.get()));
+                            i.set(i.get() + 1);
+                        }
+                    });
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+            break;
+            case 2:
+                counter ++;
+                keyFrame = new KeyFrame(
+                        Duration.seconds(.15),
+                        event -> {
+                            if (i.get() > monologe_2.length()) {
+                                timeline.stop();
+                                System.out.println("stopped");
+                            } else {
+                                Monologe_label.setText(monologe_2.substring(0, i.get()));
+                                i.set(i.get() + 1);
+                            }
+                        });
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
+            break;
+            case 3:
+                counter ++;
+                keyFrame = new KeyFrame(
+                        Duration.seconds(.15),
+                        event -> {
+                            if (i.get() > monologe_3.length()) {
+                                timeline.stop();
+                                System.out.println("stopped");
+                            } else {
+                                Monologe_label.setText(monologe_3.substring(0, i.get()));
+                                i.set(i.get() + 1);
+                            }
+                        });
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
+                break;
         }
-       // timeline.stop();
+    }
 }
 
